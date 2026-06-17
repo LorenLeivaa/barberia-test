@@ -44,27 +44,19 @@
       height: 64px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
-    .nav-brand { display: flex; align-items: center; gap: 10px; }
-    .nav-logo {
-      width: 34px; height: 34px;
-      background: var(--gold);
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
+    .nav-logo-text {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
     }
-    .nav-name { font-weight: 700; font-size: 15px; letter-spacing: -0.3px; }
-    .nav-sub { font-size: 11px; color: var(--text-muted); display: block; line-height: 1.2; }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-address { font-size: 12px; color: var(--text-muted); }
-    .nav-hours { font-size: 12px; color: var(--text-muted); }
-    .nav-divider { width: 1px; height: 16px; background: var(--border); }
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
-      .nav-address, .nav-hours, .nav-divider { display: none; }
     }
 
     /* btn-primary kept for potential future use */
@@ -426,24 +418,13 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-brand">
-    <div class="nav-logo">✂️</div>
-    <div>
-      <span class="nav-name">Barbería Don José</span>
-      <span class="nav-sub">Boedo · Buenos Aires</span>
-    </div>
-  </div>
-  <div class="nav-right">
-    <span class="nav-address">Juan Bautista Justo 2054</span>
-    <div class="nav-divider"></div>
-    <span class="nav-hours">Lun–Sáb · 9 a 19 hs</span>
-  </div>
+  <span class="nav-logo-text">Barberia Prueba</span>
 </nav>
 
 <!-- ── BOOKING ── -->
 <section id="booking">
   <div class="section-eyebrow">Reservá tu turno</div>
-  <h2 class="section-title">¿Qué corte te vas a hacer?</h2>
+  <h2 class="section-title">¿Qué servicio reservás?</h2>
   <p class="section-sub">Elegí el servicio y después al barbero. El turno es tuyo en dos pasos.</p>
 
   <!-- Step indicator -->
