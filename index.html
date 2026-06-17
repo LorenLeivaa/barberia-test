@@ -226,6 +226,41 @@
     .bp-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
     .bp-tag { background: var(--accent-bg); border: 1px solid rgba(109,40,217,0.15); color: var(--accent); border-radius: 100px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
 
+    /* ── STEP 1 HEADER ── */
+    .step1-eyebrow {
+      font-size: 12px; color: var(--text-muted); font-style: italic;
+      font-weight: 400; margin-bottom: 6px; letter-spacing: 0.2px;
+    }
+    /* Indicador de pasos */
+    .steps-bar {
+      display: flex; align-items: center; gap: 0;
+      margin-top: 14px; margin-bottom: 4px;
+    }
+    .step-pill-item { display: flex; align-items: center; gap: 6px; }
+    .step-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; flex-shrink: 0;
+      border: 1.5px solid var(--text-dim); color: var(--text-dim);
+      transition: all 0.2s;
+    }
+    .step-num.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .step-num.done  { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+    .step-pill-label { font-size: 11px; font-weight: 600; color: var(--text-dim); white-space: nowrap; transition: color 0.2s; }
+    .step-pill-label.active { color: var(--accent); }
+    .step-pill-label.done   { color: var(--accent); }
+    .step-connector { flex: 1; height: 1px; background: var(--border); margin: 0 8px; min-width: 12px; }
+
+    /* Link "solo quiero el servicio base" en upsell */
+    .upsell-skip-link {
+      display: block; text-align: center; margin-top: 18px;
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: underline; text-underline-offset: 3px;
+      cursor: pointer; background: none; border: none;
+      font-family: inherit; width: 100%; transition: color 0.13s;
+    }
+    .upsell-skip-link:hover { color: var(--text); }
+
     /* ── FOOTER ── */
     footer { background: #111; color: #fff; padding: 44px 20px; text-align: center; flex-shrink: 0; }
     .footer-brand { font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
@@ -249,7 +284,25 @@
   <!-- ══ STEP 1: Servicios ══ -->
   <div id="step1">
     <div class="step-header">
-      <div class="step-title">Reservá tu turno</div>
+      <div class="step1-eyebrow">Reservá tu turno</div>
+      <div class="step-title">Seleccioná el servicio</div>
+      <!-- Indicador de 3 pasos -->
+      <div class="steps-bar">
+        <div class="step-pill-item">
+          <div class="step-num active" id="sn1">1</div>
+          <span class="step-pill-label active" id="sl1">Elegir servicio</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-pill-item">
+          <div class="step-num" id="sn2">2</div>
+          <span class="step-pill-label" id="sl2">Profesional</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-pill-item">
+          <div class="step-num" id="sn3">3</div>
+          <span class="step-pill-label" id="sl3">Reservar cita</span>
+        </div>
+      </div>
     </div>
     <div class="service-list" id="service-list"></div>
   </div>
@@ -320,6 +373,10 @@
       <div class="us-title" id="us-title">—</div>
       <div class="us-sub" id="us-sub">—</div>
       <div class="upsell-opts" id="us-opts"></div>
+      <!-- Link para saltear el upsell y continuar con el servicio base -->
+      <button class="upsell-skip-link" onclick="skipUpsell()">
+        Solo quiero el <span id="us-skip-label">servicio elegido</span>
+      </button>
     </div>
     <!-- Carrito fijo al fondo: muestra el servicio seleccionado y el total -->
     <div class="sheet-bottom">
@@ -567,6 +624,8 @@ function openUpsSheet(key) {
       <div class="upsell-opt-delta">${o.delta}</div>
     </div>
   `).join('');
+  // Setear nombre en el link "Solo quiero el..."
+  document.getElementById('us-skip-label').textContent = u.baseName;
   // Inicializar carrito con servicio base
   updateCart(null);
   document.getElementById('ups-overlay').classList.add('open');
@@ -595,6 +654,13 @@ function updateCart(opt) {
     document.getElementById('cart-name').textContent  = u.baseName;
     document.getElementById('cart-total').textContent = fmtPrice(u.basePrice);
   }
+}
+function skipUpsell() {
+  const u = UPSELLS[currentUpsellKey];
+  currentSlug  = u.baseSlug;
+  currentLabel = u.baseName;
+  closeUpsSheet();
+  showStep2();
 }
 function closeUpsSheet(e) {
   if (!e || e.target === document.getElementById('ups-overlay'))
@@ -638,6 +704,11 @@ function showStep2() {
   const s2 = document.getElementById('step2');
   s2.classList.remove('hidden'); s2.classList.add('fade-in');
   document.getElementById('selected-chip').textContent = currentLabel;
+  // Paso 1 → hecho, paso 2 → activo
+  document.getElementById('sn1').classList.replace('active','done'); document.getElementById('sn1').textContent = '✓';
+  document.getElementById('sl1').classList.replace('active','done');
+  document.getElementById('sn2').classList.add('active');
+  document.getElementById('sl2').classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function goBack() {
@@ -645,6 +716,12 @@ function goBack() {
   const s1 = document.getElementById('step1');
   s1.classList.remove('hidden'); s1.classList.add('fade-in');
   document.getElementById('step1-how').classList.remove('hidden');
+  // Restaurar pasos
+  const n1 = document.getElementById('sn1');
+  n1.classList.remove('done'); n1.classList.add('active'); n1.textContent = '1';
+  document.getElementById('sl1').classList.remove('done'); document.getElementById('sl1').classList.add('active');
+  document.getElementById('sn2').classList.remove('active');
+  document.getElementById('sl2').classList.remove('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function book(handle) {
