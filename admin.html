@@ -3,82 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Admin — Barbería Don José</title>
+  <title>Panel Admin — Barbería</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0a0a; --surface: #141414; --surface-2: #1c1c1c;
-      --border: rgba(255,255,255,0.08); --gold: #d4a84b; --gold-light: #e8c475;
-      --text: #f0f0f0; --text-muted: #888; --text-dim: #444;
-      --green: #4ade80; --red: #f87171; --blue: #60a5fa; --radius: 14px;
+      --bg: #f5f4f2;
+      --surface: #ffffff;
+      --border: #e8e6e1;
+      --text: #111111;
+      --text-2: #444444;
+      --text-muted: #888888;
+      --text-dim: #cccccc;
+      --accent: #6d28d9;
+      --accent-bg: #f5f3ff;
+      --accent-mid: #8b5cf6;
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --red: #dc2626;
+      --radius: 14px;
     }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased; min-height: 100vh;
+    }
 
-    /* LOGIN */
+    /* ── LOGIN ── */
     #login-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
-    .login-box { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:40px 36px; width:100%; max-width:400px; }
-    .login-logo { font-size:13px; font-weight:800; letter-spacing:3px; text-transform:uppercase; text-align:center; margin-bottom:8px; }
-    .login-sub { text-align:center; font-size:12px; color:var(--text-muted); margin-bottom:32px; }
-    .form-group { margin-bottom:16px; }
-    .form-label { display:block; font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:7px; }
-    .form-input { width:100%; background:var(--surface-2); border:1px solid var(--border); border-radius:9px; padding:11px 14px; font-size:14px; color:var(--text); font-family:inherit; outline:none; transition:border-color 0.15s; }
-    .form-input:focus { border-color:var(--gold); }
-    .login-btn { width:100%; background:var(--gold); color:#000; border:none; border-radius:9px; padding:13px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:8px; transition:background 0.15s; }
-    .login-btn:hover { background:var(--gold-light); }
-    .login-error { color:var(--red); font-size:12px; text-align:center; margin-top:12px; display:none; }
+    .login-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px 36px; width: 100%; max-width: 380px;
+    }
+    .login-logo { font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase; text-align:center; margin-bottom:6px; }
+    .login-sub { text-align:center; font-size:12px; color:var(--text-muted); margin-bottom:30px; }
+    .form-group { margin-bottom:14px; }
+    .form-label { display:block; font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:6px; }
+    .form-input {
+      width:100%; background:#fff; border:1px solid var(--border);
+      border-radius:10px; padding:11px 14px; font-size:14px;
+      color:var(--text); font-family:inherit; outline:none; transition:border-color 0.15s;
+    }
+    .form-input:focus { border-color:var(--accent); }
+    .login-btn {
+      width:100%; background:#111; color:#fff; border:none;
+      border-radius:10px; padding:13px; font-size:14px; font-weight:700;
+      cursor:pointer; font-family:inherit; margin-top:8px; transition:background 0.15s;
+    }
+    .login-btn:hover { background:#333; }
+    .login-error { color:var(--red); font-size:12px; text-align:center; margin-top:10px; display:none; }
 
-    /* DASHBOARD */
+    /* ── DASHBOARD ── */
     #dashboard { display:none; }
     .topbar {
       position:sticky; top:0; z-index:50; height:60px;
-      background:var(--bg); border-bottom:1px solid var(--border);
+      background:#111; border-bottom:1px solid rgba(255,255,255,0.07);
       display:flex; align-items:center; justify-content:space-between; padding:0 28px;
     }
-    .topbar-left { display:flex; align-items:center; gap:14px; }
-    .topbar-title { font-size:14px; font-weight:800; letter-spacing:2px; text-transform:uppercase; }
-    .topbar-badge { font-size:10px; background:var(--surface-2); border:1px solid var(--border); padding:3px 9px; border-radius:100px; color:var(--text-muted); }
+    .topbar-left { display:flex; align-items:center; gap:12px; }
+    .topbar-title { font-size:13px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:#fff; }
+    .topbar-badge {
+      font-size:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
+      padding:2px 8px; border-radius:100px; color:rgba(255,255,255,0.5);
+    }
     .topbar-right { display:flex; align-items:center; gap:10px; }
-    .icon-btn { width:36px; height:36px; background:var(--surface); border:1px solid var(--border); border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:15px; transition:all 0.15s; color:var(--text-muted); }
-    .icon-btn:hover { background:var(--surface-2); color:var(--text); }
-    .logout-btn { font-size:12px; font-weight:600; color:var(--text-muted); background:none; border:1px solid var(--border); border-radius:8px; padding:6px 14px; cursor:pointer; font-family:inherit; transition:all 0.15s; }
-    .logout-btn:hover { color:var(--text); background:var(--surface); }
+    .icon-btn {
+      width:34px; height:34px; background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12); border-radius:9px;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; font-size:14px; transition:all 0.15s; color:rgba(255,255,255,0.6);
+    }
+    .icon-btn:hover { background:rgba(255,255,255,0.15); color:#fff; }
+    .logout-btn {
+      font-size:12px; font-weight:600; color:rgba(255,255,255,0.5);
+      background:none; border:1px solid rgba(255,255,255,0.12);
+      border-radius:8px; padding:6px 14px; cursor:pointer; font-family:inherit; transition:all 0.15s;
+    }
+    .logout-btn:hover { color:#fff; border-color:rgba(255,255,255,0.3); }
 
-    .main { max-width:1060px; margin:0 auto; padding:28px 24px 80px; }
+    .main { max-width:1040px; margin:0 auto; padding:28px 20px 80px; }
 
-    /* PERIOD TABS */
+    /* ── PERIOD TABS ── */
     .period-row { display:flex; align-items:center; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
     .period-label { font-size:12px; color:var(--text-muted); margin-right:2px; }
-    .tab-btn { background:var(--surface); border:1px solid var(--border); color:var(--text-muted); padding:7px 16px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; font-family:inherit; transition:all 0.15s; }
-    .tab-btn.active { background:var(--gold); border-color:var(--gold); color:#000; font-weight:700; }
-    .tab-btn:not(.active):hover { background:var(--surface-2); color:var(--text); }
+    .tab-btn {
+      background:var(--surface); border:1px solid var(--border);
+      color:var(--text-muted); padding:7px 16px; border-radius:8px;
+      font-size:13px; font-weight:500; cursor:pointer; font-family:inherit; transition:all 0.15s;
+    }
+    .tab-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700; }
+    .tab-btn:not(.active):hover { background:var(--accent-bg); border-color:var(--accent); color:var(--accent); }
     .date-range { display:none; align-items:center; gap:8px; }
     .date-range.visible { display:flex; }
-    .date-input { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:6px 11px; border-radius:8px; font-size:12px; font-family:inherit; outline:none; cursor:pointer; }
-    .date-input:focus { border-color:var(--gold); }
+    .date-input {
+      background:var(--surface); border:1px solid var(--border);
+      color:var(--text); padding:6px 11px; border-radius:8px;
+      font-size:12px; font-family:inherit; outline:none; cursor:pointer;
+    }
+    .date-input:focus { border-color:var(--accent); }
     .date-sep { font-size:12px; color:var(--text-muted); }
 
-    /* KPI CARDS */
+    /* ── KPI CARDS ── */
     .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
-    .kpi-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 20px 16px; }
+    .kpi-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px; }
     .kpi-label { font-size:11px; font-weight:600; color:var(--text-muted); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px; }
     .kpi-value { font-size:26px; font-weight:800; letter-spacing:-1px; margin-bottom:6px; }
-    .kpi-value.gold { color:var(--gold); }
-    .kpi-value.green { color:var(--green); }
+    .kpi-value.violet { color:var(--accent); }
+    .kpi-value.green  { color:var(--green); }
     .kpi-delta { font-size:11px; color:var(--text-muted); }
     .kpi-delta .up { color:var(--green); font-weight:600; }
 
-    /* 2-COL LAYOUT */
+    /* ── 2-COL LAYOUT ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
     .panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; }
     .panel-title { font-size:13px; font-weight:700; margin-bottom:18px; }
 
-    /* DONUT CHARTS */
-    .chart-wrap { display:flex; align-items:center; gap:24px; }
+    /* ── DONUT CHARTS ── */
+    .chart-wrap { display:flex; align-items:center; gap:22px; }
     .donut-outer { position:relative; width:110px; height:110px; flex-shrink:0; }
     .donut-svg { width:110px; height:110px; transform:rotate(-90deg); }
-    .donut-bg { fill:none; stroke:var(--surface-2); stroke-width:14; }
+    .donut-bg { fill:none; stroke:var(--bg); stroke-width:14; }
     .donut-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
     .donut-main { font-size:18px; font-weight:800; }
     .donut-sub { font-size:10px; color:var(--text-muted); }
@@ -87,79 +132,117 @@
     .legend-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
     .legend-name { font-size:12px; color:var(--text-muted); flex:1; }
     .legend-val { font-size:13px; font-weight:700; }
-    .legend-pct { font-size:11px; color:var(--text-muted); margin-left:4px; }
+    .legend-pct { font-size:11px; color:var(--text-muted); margin-left:3px; }
 
-    /* TURNOS DEL DÍA */
+    /* ── TURNOS DEL DÍA ── */
     .day-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
     .day-title { font-size:13px; font-weight:700; }
     .day-date { font-size:11px; color:var(--text-muted); }
-    .turno-list { display:flex; flex-direction:column; gap:8px; }
+    .turno-list { display:flex; flex-direction:column; gap:7px; }
     .turno-row {
       display:flex; align-items:center; gap:12px;
-      background:var(--surface-2); border-radius:10px; padding:10px 14px;
+      background:var(--bg); border-radius:10px; padding:10px 14px;
       border:1px solid transparent; transition:border-color 0.15s;
     }
     .turno-row:hover { border-color:var(--border); }
-    .turno-time { font-size:12px; font-weight:700; color:var(--gold); width:44px; flex-shrink:0; }
-    .turno-avatar { width:30px; height:30px; border-radius:50%; background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--gold); flex-shrink:0; border:1px solid var(--border); }
+    .turno-time { font-size:12px; font-weight:700; color:var(--accent); width:44px; flex-shrink:0; }
+    .turno-avatar {
+      width:30px; height:30px; border-radius:50%;
+      background:var(--accent-bg); display:flex; align-items:center; justify-content:center;
+      font-size:11px; font-weight:800; color:var(--accent); flex-shrink:0;
+      border:1px solid rgba(109,40,217,0.15);
+    }
     .turno-info { flex:1; min-width:0; }
     .turno-name { font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .turno-service { font-size:11px; color:var(--text-muted); }
     .turno-right { text-align:right; flex-shrink:0; }
-    .turno-price { font-size:13px; font-weight:800; color:var(--gold); }
+    .turno-price { font-size:13px; font-weight:800; }
     .turno-barber { font-size:10px; color:var(--text-muted); margin-top:2px; }
     .turno-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 
-    /* TABLE */
+    /* ── BARBER TABLE ── */
     .table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
     table { width:100%; border-collapse:collapse; }
     thead th { padding:11px 16px; text-align:left; font-size:11px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px; text-transform:uppercase; border-bottom:1px solid var(--border); }
     tbody td { padding:13px 16px; font-size:13px; border-bottom:1px solid var(--border); }
     tbody tr:last-child td { border-bottom:none; }
-    tbody tr:hover td { background:var(--surface-2); }
+    tbody tr:hover td { background:var(--bg); }
     .td-name { font-weight:700; }
     .td-muted { color:var(--text-muted); }
-    .td-gold { color:var(--gold); font-weight:700; }
-    .bar-wrap { width:90px; height:4px; background:var(--surface-2); border-radius:2px; margin-top:5px; }
-    .bar-fill { height:4px; background:var(--gold); border-radius:2px; }
+    .td-accent { color:var(--accent); font-weight:700; }
+    .bar-wrap { width:90px; height:4px; background:var(--bg); border-radius:2px; margin-top:5px; }
+    .bar-fill { height:4px; background:var(--accent); border-radius:2px; }
 
-    /* SECTION HEAD */
     .section-head { display:flex; align-items:center; justify-content:space-between; margin:24px 0 12px; }
     .section-head h3 { font-size:14px; font-weight:700; }
     .section-head span { font-size:12px; color:var(--text-muted); }
 
-    /* COSTS MODAL */
-    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); z-index:200; display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity 0.25s; }
+    /* ── COSTS MODAL ── */
+    .overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.35);
+      backdrop-filter:blur(4px); z-index:200;
+      display:flex; align-items:center; justify-content:center; padding:24px;
+      opacity:0; pointer-events:none; transition:opacity 0.22s;
+    }
     .overlay.open { opacity:1; pointer-events:all; }
-    .modal { background:#181818; border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:28px 28px 32px; width:100%; max-width:520px; max-height:85vh; overflow-y:auto; transform:scale(0.95) translateY(8px); transition:transform 0.25s; }
+    .modal {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:20px; padding:28px 28px 32px;
+      width:100%; max-width:500px; max-height:85vh; overflow-y:auto;
+      transform:scale(0.95) translateY(8px); transition:transform 0.22s;
+    }
     .overlay.open .modal { transform:scale(1) translateY(0); }
     .modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
     .modal-title { font-size:17px; font-weight:800; }
-    .close-btn { width:32px; height:32px; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-size:15px; color:var(--text-muted); display:flex; align-items:center; justify-content:center; transition:color 0.15s; }
-    .close-btn:hover { color:var(--text); }
+    .close-btn {
+      width:32px; height:32px; background:var(--bg); border:1px solid var(--border);
+      border-radius:8px; cursor:pointer; font-size:14px; color:var(--text-muted);
+      display:flex; align-items:center; justify-content:center; transition:background 0.13s;
+    }
+    .close-btn:hover { background:var(--border); }
     .modal-section { margin-bottom:22px; }
     .modal-section-title { font-size:11px; font-weight:700; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; }
-    .barber-row { display:flex; align-items:center; justify-content:space-between; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:8px; }
+    .barber-row {
+      display:flex; align-items:center; justify-content:space-between;
+      background:var(--bg); border:1px solid var(--border);
+      border-radius:10px; padding:12px 14px; margin-bottom:8px;
+    }
     .barber-row-name { font-size:14px; font-weight:700; }
     .barber-row-controls { display:flex; align-items:center; gap:8px; }
-    .type-toggle { display:flex; background:var(--surface-2); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
-    .type-opt { padding:4px 10px; font-size:11px; font-weight:700; cursor:pointer; color:var(--text-muted); transition:all 0.15s; border:none; background:transparent; font-family:inherit; }
-    .type-opt.active { background:var(--gold); color:#000; }
-    .amount-input { width:72px; background:var(--surface-2); border:1px solid var(--border); border-radius:7px; padding:5px 9px; font-size:13px; font-weight:700; color:var(--gold); font-family:inherit; outline:none; text-align:right; }
-    .amount-input:focus { border-color:var(--gold); }
-    .gasto-row { display:flex; align-items:center; justify-content:space-between; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:11px 14px; margin-bottom:8px; }
-    .gasto-left { display:flex; align-items:center; gap:10px; }
+    .type-toggle { display:flex; background:var(--border); border-radius:7px; overflow:hidden; }
+    .type-opt {
+      padding:4px 12px; font-size:11px; font-weight:700; cursor:pointer;
+      color:var(--text-muted); transition:all 0.15s; border:none; background:transparent; font-family:inherit;
+    }
+    .type-opt.active { background:var(--accent); color:#fff; border-radius:6px; }
+    .amount-input {
+      width:72px; background:var(--surface); border:1px solid var(--border);
+      border-radius:7px; padding:5px 9px; font-size:13px; font-weight:700;
+      color:var(--accent); font-family:inherit; outline:none; text-align:right;
+    }
+    .amount-input:focus { border-color:var(--accent); }
+    .gasto-row {
+      display:flex; align-items:center; justify-content:space-between;
+      background:var(--bg); border:1px solid var(--border);
+      border-radius:10px; padding:11px 14px; margin-bottom:8px;
+    }
     .gasto-name { font-size:13px; font-weight:600; }
-    .gasto-amount { font-size:13px; color:var(--gold); font-weight:700; }
-    .gasto-remove { background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:16px; padding:0 2px; transition:color 0.15s; line-height:1; }
+    .gasto-right { display:flex; align-items:center; gap:10px; }
+    .gasto-amount { font-size:13px; color:var(--accent); font-weight:700; }
+    .gasto-remove { background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:16px; line-height:1; transition:color 0.13s; }
     .gasto-remove:hover { color:var(--red); }
-    .add-gasto-row { display:flex; gap:8px; margin-top:4px; }
+    /* Agregar gasto: inputs en una fila, botón abajo a todo el ancho */
+    .add-gasto-inputs { display:flex; gap:8px; margin-bottom:8px; }
     .add-input { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:9px 12px; font-size:13px; color:var(--text); font-family:inherit; outline:none; }
-    .add-input:focus { border-color:var(--gold); }
+    .add-input:focus { border-color:var(--accent); }
     .add-input.amount { width:90px; flex:none; }
-    .add-btn { background:var(--gold); color:#000; border:none; border-radius:9px; padding:9px 16px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; transition:background 0.15s; }
-    .add-btn:hover { background:var(--gold-light); }
-    .resumen-box { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+    .add-btn {
+      width:100%; background:var(--accent); color:#fff; border:none;
+      border-radius:9px; padding:11px; font-size:13px; font-weight:700;
+      cursor:pointer; font-family:inherit; transition:background 0.15s;
+    }
+    .add-btn:hover { background:var(--accent-mid); }
+    .resumen-box { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
     .resumen-row { display:flex; justify-content:space-between; align-items:center; font-size:13px; padding:5px 0; }
     .resumen-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:11px; font-size:15px; font-weight:800; }
     .resumen-label { color:var(--text-muted); }
@@ -168,41 +251,42 @@
     .resumen-val.neg { color:var(--red); }
     .resumen-val.pos { color:var(--green); }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width:800px) {
       .kpi-grid { grid-template-columns:repeat(2,1fr); }
       .two-col { grid-template-columns:1fr; }
       .topbar { padding:0 16px; }
       .main { padding:20px 16px 60px; }
     }
-    @media (max-width:440px) { .kpi-value { font-size:20px; } }
 
     .hidden { display:none !important; }
-    .fade-in { animation:fadeUp 0.3s ease both; }
+    .fade-in { animation:fadeUp 0.28s ease both; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ══ LOGIN ══ -->
 <div id="login-screen">
   <div class="login-box">
+    <!-- REEMPLAZAR LOGO: cambiar el texto por <img src="logo.png" style="height:28px; display:block; margin:0 auto 8px"> -->
     <div class="login-logo">Barberia Prueba</div>
     <div class="login-sub">Panel de administración</div>
     <div class="form-group">
       <label class="form-label">Email</label>
-      <input id="inp-email" class="form-input" type="email" placeholder="admin@barberia.com" autocomplete="username">
+      <input id="inp-email" class="form-input" type="email" placeholder="tu@email.com" autocomplete="username">
     </div>
     <div class="form-group">
       <label class="form-label">Contraseña</label>
-      <input id="inp-pass" class="form-input" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      <input id="inp-pass" class="form-input" type="password" placeholder="••••••••" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')doLogin()">
     </div>
     <button class="login-btn" onclick="doLogin()">Ingresar</button>
-    <div class="login-error" id="login-error">Contraseña incorrecta</div>
+    <div class="login-error" id="login-error">—</div>
   </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- ══ DASHBOARD ══ -->
 <div id="dashboard">
   <div class="topbar">
     <div class="topbar-left">
@@ -217,13 +301,13 @@
 
   <div class="main">
 
-    <!-- PERIOD -->
+    <!-- PERÍODO -->
     <div class="period-row">
       <span class="period-label">Ver:</span>
       <button class="tab-btn active" onclick="setPeriod('hoy',this)">Hoy</button>
       <button class="tab-btn" onclick="setPeriod('semana',this)">Esta semana</button>
       <button class="tab-btn" onclick="setPeriod('mes',this)">Este mes</button>
-      <button class="tab-btn" onclick="setPeriod('custom',this)">📅 Personalizado</button>
+      <button class="tab-btn" onclick="setPeriod('custom',this)">Personalizado</button>
       <div class="date-range" id="date-range">
         <input type="date" class="date-input" id="date-from" onchange="onDateChange()">
         <span class="date-sep">→</span>
@@ -234,11 +318,11 @@
     <!-- KPIs -->
     <div class="kpi-grid" id="kpi-grid"></div>
 
-    <!-- CHARTS + TURNOS DEL DÍA -->
+    <!-- GRÁFICOS + TURNOS -->
     <div class="two-col">
       <div class="panel">
         <div class="panel-title">Distribución de ingresos</div>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
           <div>
             <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;">Por barbero</div>
             <div class="chart-wrap">
@@ -248,10 +332,7 @@
                   <circle id="donut-b1" fill="none" stroke-width="14" cx="55" cy="55" r="42"/>
                   <circle id="donut-b2" fill="none" stroke-width="14" cx="55" cy="55" r="42"/>
                 </svg>
-                <div class="donut-center">
-                  <span class="donut-main" id="donut-b-main">—</span>
-                  <span class="donut-sub">turnos</span>
-                </div>
+                <div class="donut-center"><span class="donut-main" id="donut-b-main">—</span><span class="donut-sub">turnos</span></div>
               </div>
               <div class="legend" id="legend-barbero"></div>
             </div>
@@ -266,10 +347,7 @@
                   <circle id="donut-s2" fill="none" stroke-width="14" cx="55" cy="55" r="42"/>
                   <circle id="donut-s3" fill="none" stroke-width="14" cx="55" cy="55" r="42"/>
                 </svg>
-                <div class="donut-center">
-                  <span class="donut-main" id="donut-s-main">—</span>
-                  <span class="donut-sub">servicios</span>
-                </div>
+                <div class="donut-center"><span class="donut-main" id="donut-s-main">—</span><span class="donut-sub">servicios</span></div>
               </div>
               <div class="legend" id="legend-servicio"></div>
             </div>
@@ -286,78 +364,48 @@
           <div class="turno-row">
             <div class="turno-time">10:30</div>
             <div class="turno-avatar">JG</div>
-            <div class="turno-info">
-              <div class="turno-name">Juan González</div>
-              <div class="turno-service">Corte + Barba</div>
-            </div>
-            <div class="turno-right">
-              <div class="turno-price">$20.000</div>
-              <div class="turno-barber">Mario</div>
-            </div>
-            <div class="turno-dot" style="background:var(--green)"></div>
+            <div class="turno-info"><div class="turno-name">Juan González</div><div class="turno-service">Corte + Barba</div></div>
+            <div class="turno-right"><div class="turno-price">$20.000</div><div class="turno-barber">Mario</div></div>
+            <div class="turno-dot" style="background:#16a34a"></div>
           </div>
           <div class="turno-row">
             <div class="turno-time">11:00</div>
             <div class="turno-avatar">MR</div>
-            <div class="turno-info">
-              <div class="turno-name">Matías Romero</div>
-              <div class="turno-service">Corte de pelo</div>
-            </div>
-            <div class="turno-right">
-              <div class="turno-price">$15.000</div>
-              <div class="turno-barber">Lorenzo</div>
-            </div>
-            <div class="turno-dot" style="background:var(--green)"></div>
+            <div class="turno-info"><div class="turno-name">Matías Romero</div><div class="turno-service">Corte de pelo</div></div>
+            <div class="turno-right"><div class="turno-price">$15.000</div><div class="turno-barber">Lorenzo</div></div>
+            <div class="turno-dot" style="background:#16a34a"></div>
           </div>
           <div class="turno-row">
             <div class="turno-time">12:00</div>
             <div class="turno-avatar">LP</div>
-            <div class="turno-info">
-              <div class="turno-name">Lucas Pereyra</div>
-              <div class="turno-service">Arreglo de barba</div>
-            </div>
-            <div class="turno-right">
-              <div class="turno-price">$8.000</div>
-              <div class="turno-barber">Mario</div>
-            </div>
-            <div class="turno-dot" style="background:var(--gold)"></div>
+            <div class="turno-info"><div class="turno-name">Lucas Pereyra</div><div class="turno-service">Arreglo de barba</div></div>
+            <div class="turno-right"><div class="turno-price">$8.000</div><div class="turno-barber">Mario</div></div>
+            <div class="turno-dot" style="background:var(--accent)"></div>
           </div>
           <div class="turno-row">
             <div class="turno-time">14:30</div>
             <div class="turno-avatar">FA</div>
-            <div class="turno-info">
-              <div class="turno-name">Federico Alonso</div>
-              <div class="turno-service">Corte + Barba</div>
-            </div>
-            <div class="turno-right">
-              <div class="turno-price">$20.000</div>
-              <div class="turno-barber">Lorenzo</div>
-            </div>
-            <div class="turno-dot" style="background:var(--gold)"></div>
+            <div class="turno-info"><div class="turno-name">Federico Alonso</div><div class="turno-service">Corte + Barba</div></div>
+            <div class="turno-right"><div class="turno-price">$20.000</div><div class="turno-barber">Lorenzo</div></div>
+            <div class="turno-dot" style="background:var(--accent)"></div>
           </div>
           <div class="turno-row">
             <div class="turno-time">16:00</div>
             <div class="turno-avatar">CR</div>
-            <div class="turno-info">
-              <div class="turno-name">Carlos Ríos</div>
-              <div class="turno-service">Corte VIP</div>
-            </div>
-            <div class="turno-right">
-              <div class="turno-price">$25.000</div>
-              <div class="turno-barber">Mario</div>
-            </div>
+            <div class="turno-info"><div class="turno-name">Carlos Ríos</div><div class="turno-service">Corte VIP</div></div>
+            <div class="turno-right"><div class="turno-price">$25.000</div><div class="turno-barber">Mario</div></div>
             <div class="turno-dot" style="background:var(--text-dim)"></div>
           </div>
         </div>
-        <div style="display:flex;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)"><div style="width:7px;height:7px;border-radius:50%;background:var(--green)"></div>Completado</div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)"><div style="width:7px;height:7px;border-radius:50%;background:var(--gold)"></div>Confirmado</div>
+        <div style="display:flex;gap:14px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)"><div style="width:7px;height:7px;border-radius:50%;background:#16a34a"></div>Completado</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)"><div style="width:7px;height:7px;border-radius:50%;background:var(--accent)"></div>Confirmado</div>
           <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)"><div style="width:7px;height:7px;border-radius:50%;background:var(--text-dim)"></div>Pendiente</div>
         </div>
       </div>
     </div>
 
-    <!-- BARBER TABLE -->
+    <!-- TABLA BARBEROS -->
     <div class="section-head">
       <h3>Rendimiento por barbero</h3>
       <span id="period-label-text">Hoy</span>
@@ -372,11 +420,11 @@
   </div>
 </div>
 
-<!-- COSTS MODAL -->
+<!-- ══ MODAL: COSTOS ══ -->
 <div class="overlay" id="costs-overlay" onclick="overlayClickCosts(event)">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">⚙️ Costos del negocio</div>
+      <div class="modal-title">Costos del negocio</div>
       <button class="close-btn" onclick="closeCosts()">✕</button>
     </div>
     <div class="modal-section">
@@ -386,11 +434,12 @@
     <div class="modal-section">
       <div class="modal-section-title">Gastos fijos mensuales</div>
       <div id="gastos-list"></div>
-      <div class="add-gasto-row">
+      <!-- Inputs en una fila, botón Agregar debajo a todo el ancho -->
+      <div class="add-gasto-inputs">
         <input class="add-input" id="new-gasto-name" placeholder="Nombre del gasto" type="text">
         <input class="add-input amount" id="new-gasto-amt" placeholder="$0" type="number" min="0">
-        <button class="add-btn" onclick="addGasto()">Agregar</button>
       </div>
+      <button class="add-btn" onclick="addGasto()">Agregar gasto</button>
     </div>
     <div class="modal-section" style="margin-bottom:0">
       <div class="modal-section-title">Resumen este mes</div>
@@ -400,17 +449,25 @@
 </div>
 
 <script>
-// ── AUTH ──
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+// REEMPLAZAR EMAIL: cambiar 'lorenleiva7@gmail.com' por el email del cliente
+const ADMIN_EMAIL = 'lorenleiva7@gmail.com';
 const PASS = 'admin1234';
+
 function doLogin() {
-  if (document.getElementById('inp-pass').value === PASS) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    document.getElementById('login-error').style.display = 'none';
-    renderAll();
-  } else {
-    document.getElementById('login-error').style.display = 'block';
+  const email = document.getElementById('inp-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('inp-pass').value;
+  const errEl = document.getElementById('login-error');
+  if (email !== ADMIN_EMAIL) {
+    errEl.textContent = 'Email no autorizado'; errEl.style.display = 'block'; return;
   }
+  if (pass !== PASS) {
+    errEl.textContent = 'Contraseña incorrecta'; errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  renderAll();
 }
 function doLogout() {
   document.getElementById('login-screen').style.display = 'flex';
@@ -418,22 +475,21 @@ function doLogout() {
   document.getElementById('inp-pass').value = '';
 }
 
-// ── DATA ──
+// ─── DATA ─────────────────────────────────────────────────────────────────────
 const periodData = {
-  hoy:    { label:'Hoy',          ingresos:88000,  turnos:5,  mario:{ t:3, v:53000 }, lorenzo:{ t:2, v:35000 }, prev:78000 },
-  semana: { label:'Esta semana',  ingresos:490000, turnos:28, mario:{ t:16,v:287000}, lorenzo:{ t:12,v:203000}, prev:441000 },
-  mes:    { label:'Este mes',     ingresos:1920000,turnos:112,mario:{ t:62,v:1107000},lorenzo:{ t:50,v:813000}, prev:1740000 },
-  custom: { label:'Período',      ingresos:310000, turnos:18, mario:{ t:11,v:182000}, lorenzo:{ t:7, v:128000}, prev:280000 },
+  hoy:    { label:'Hoy',         ingresos:88000,   turnos:5,  mario:{t:3,v:53000},  lorenzo:{t:2,v:35000},  prev:78000  },
+  semana: { label:'Esta semana', ingresos:490000,  turnos:28, mario:{t:16,v:287000}, lorenzo:{t:12,v:203000}, prev:441000 },
+  mes:    { label:'Este mes',    ingresos:1920000, turnos:112,mario:{t:62,v:1107000},lorenzo:{t:50,v:813000}, prev:1740000},
+  custom: { label:'Período',     ingresos:310000,  turnos:18, mario:{t:11,v:182000}, lorenzo:{t:7,v:128000},  prev:280000 },
 };
 const serviceDist = { combo:50, corte:30, barba:20 };
 let currentPeriod = 'hoy';
-
-const C = 2 * Math.PI * 42; // circunferencia del donut (r=42)
+const C = 2 * Math.PI * 42;
 
 function fmt(n) { return '$' + n.toLocaleString('es-AR'); }
 function pct(a,b) { return Math.round(a/b*100); }
 
-// ── PERIOD ──
+// ─── PERIOD ───────────────────────────────────────────────────────────────────
 function setPeriod(p, btn) {
   currentPeriod = p;
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -441,29 +497,26 @@ function setPeriod(p, btn) {
   const dr = document.getElementById('date-range');
   dr.classList.toggle('visible', p === 'custom');
   if (p === 'custom') {
-    // Set today as default dates and open the from-date picker
     const today = new Date().toISOString().split('T')[0];
     const fromEl = document.getElementById('date-from');
-    const toEl = document.getElementById('date-to');
+    const toEl   = document.getElementById('date-to');
     if (!fromEl.value) fromEl.value = today;
-    if (!toEl.value) toEl.value = today;
+    if (!toEl.value)   toEl.value   = today;
     setTimeout(() => { try { fromEl.showPicker(); } catch(e) { fromEl.focus(); } }, 100);
   }
   renderAll();
 }
-
 function onDateChange() {
-  // After picking the from-date, auto-open to-date picker
   const toEl = document.getElementById('date-to');
   setTimeout(() => { try { toEl.showPicker(); } catch(e) { toEl.focus(); } }, 80);
   renderAll();
 }
 
+// ─── RENDER ───────────────────────────────────────────────────────────────────
 function renderAll() {
   const d = periodData[currentPeriod] || periodData.mes;
   document.getElementById('period-label-text').textContent = d.label;
 
-  // Today label
   const now = new Date();
   const days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
   const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -471,19 +524,18 @@ function renderAll() {
     `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]}`;
 
   const gastosTotal = gastos.reduce((s,g) => s+g.amt, 0);
-  const comMario   = barbers[0].type==='%' ? Math.round(d.mario.v*barbers[0].val/100) : barbers[0].val*d.mario.t;
-  const comLorenzo = barbers[1].type==='%' ? Math.round(d.lorenzo.v*barbers[1].val/100) : barbers[1].val*d.lorenzo.t;
+  const comMario   = barbers[0].type==='%' ? Math.round(d.mario.v   * barbers[0].val/100) : barbers[0].val * d.mario.t;
+  const comLorenzo = barbers[1].type==='%' ? Math.round(d.lorenzo.v * barbers[1].val/100) : barbers[1].val * d.lorenzo.t;
   const ganancia   = d.ingresos - gastosTotal - comMario - comLorenzo;
   const ticket     = Math.round(d.ingresos / d.turnos);
   const delta      = d.ingresos - d.prev;
-  const deltaSign  = delta >= 0 ? '+' : '';
 
   // KPIs
   document.getElementById('kpi-grid').innerHTML = `
     <div class="kpi-card fade-in">
       <div class="kpi-label">Ingresos</div>
-      <div class="kpi-value gold">${fmt(d.ingresos)}</div>
-      <div class="kpi-delta"><span class="up">${deltaSign}${fmt(Math.abs(delta))}</span> vs anterior</div>
+      <div class="kpi-value violet">${fmt(d.ingresos)}</div>
+      <div class="kpi-delta"><span class="up">${delta>=0?'+':''}${fmt(Math.abs(delta))}</span> vs anterior</div>
     </div>
     <div class="kpi-card fade-in">
       <div class="kpi-label">Turnos</div>
@@ -502,68 +554,62 @@ function renderAll() {
     </div>
   `;
 
-  // Donut — por barbero
+  // Donut barberos — colores violet
   const totalT = d.turnos;
   const mPct = pct(d.mario.t, totalT);
-  const lPct = 100 - mPct;
-  setDonutTwo('donut-b1','donut-b2', mPct, '#d4a84b','#4ade80');
+  setDonutTwo('donut-b1','donut-b2', mPct, '#6d28d9','#a78bfa');
   document.getElementById('donut-b-main').textContent = totalT;
   document.getElementById('legend-barbero').innerHTML = `
-    <div class="legend-item"><div class="legend-dot" style="background:#d4a84b"></div><span class="legend-name">Mario</span><span class="legend-val">${d.mario.t}<span class="legend-pct">${mPct}%</span></span></div>
-    <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div><span class="legend-name">Lorenzo</span><span class="legend-val">${d.lorenzo.t}<span class="legend-pct">${lPct}%</span></span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#6d28d9"></div><span class="legend-name">Mario</span><span class="legend-val">${d.mario.t}<span class="legend-pct">${mPct}%</span></span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div><span class="legend-name">Lorenzo</span><span class="legend-val">${d.lorenzo.t}<span class="legend-pct">${100-mPct}%</span></span></div>
   `;
 
-  // Donut — por servicio
+  // Donut servicios — shades de violet
   const sCombo = Math.round(totalT * serviceDist.combo/100);
   const sCorte = Math.round(totalT * serviceDist.corte/100);
   const sBarba = totalT - sCombo - sCorte;
-  setDonutThree('donut-s1','donut-s2','donut-s3', serviceDist.combo, serviceDist.corte, serviceDist.barba, '#d4a84b','#60a5fa','#a78bfa');
+  setDonutThree('donut-s1','donut-s2','donut-s3', serviceDist.combo, serviceDist.corte, serviceDist.barba, '#6d28d9','#8b5cf6','#c4b5fd');
   document.getElementById('donut-s-main').textContent = totalT;
   document.getElementById('legend-servicio').innerHTML = `
-    <div class="legend-item"><div class="legend-dot" style="background:#d4a84b"></div><span class="legend-name">Corte+Barba</span><span class="legend-val">${sCombo}<span class="legend-pct">${serviceDist.combo}%</span></span></div>
-    <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div><span class="legend-name">Corte</span><span class="legend-val">${sCorte}<span class="legend-pct">${serviceDist.corte}%</span></span></div>
-    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div><span class="legend-name">Barba</span><span class="legend-val">${sBarba}<span class="legend-pct">${serviceDist.barba}%</span></span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#6d28d9"></div><span class="legend-name">Corte+Barba</span><span class="legend-val">${sCombo}<span class="legend-pct">${serviceDist.combo}%</span></span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div><span class="legend-name">Corte</span><span class="legend-val">${sCorte}<span class="legend-pct">${serviceDist.corte}%</span></span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c4b5fd"></div><span class="legend-name">Barba</span><span class="legend-val">${sBarba}<span class="legend-pct">${serviceDist.barba}%</span></span></div>
   `;
 
-  // Table
+  // Tabla
   const total = d.ingresos;
   document.getElementById('barber-tbody').innerHTML = `
     <tr>
       <td class="td-name">Mario</td>
       <td class="td-muted">${d.mario.t} turnos</td>
-      <td class="td-gold">${fmt(d.mario.v)}</td>
+      <td class="td-accent">${fmt(d.mario.v)}</td>
       <td><div class="td-muted">${pct(d.mario.v,total)}%</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct(d.mario.v,total)}%"></div></div></td>
     </tr>
     <tr>
       <td class="td-name">Lorenzo</td>
       <td class="td-muted">${d.lorenzo.t} turnos</td>
-      <td class="td-gold">${fmt(d.lorenzo.v)}</td>
+      <td class="td-accent">${fmt(d.lorenzo.v)}</td>
       <td><div class="td-muted">${pct(d.lorenzo.v,total)}%</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct(d.lorenzo.v,total)}%"></div></div></td>
     </tr>
   `;
 }
 
-// ── DONUT HELPERS ──
-function setDonutTwo(id1, id2, pct1, col1, col2) {
-  const d1 = C * pct1/100, d2 = C - d1;
-  const el1 = document.getElementById(id1);
-  const el2 = document.getElementById(id2);
-  el1.setAttribute('stroke', col1);
-  el1.setAttribute('stroke-dasharray', `${d1} ${C-d1}`);
-  el1.setAttribute('stroke-dashoffset', '0');
-  el2.setAttribute('stroke', col2);
-  el2.setAttribute('stroke-dasharray', `${d2} ${C-d2}`);
-  el2.setAttribute('stroke-dashoffset', `${-d1}`);
+// ─── DONUT HELPERS ────────────────────────────────────────────────────────────
+function setDonutTwo(id1, id2, p1, c1, c2) {
+  const d1=C*p1/100, d2=C-d1;
+  const e1=document.getElementById(id1), e2=document.getElementById(id2);
+  e1.setAttribute('stroke',c1); e1.setAttribute('stroke-dasharray',`${d1} ${C-d1}`); e1.setAttribute('stroke-dashoffset','0');
+  e2.setAttribute('stroke',c2); e2.setAttribute('stroke-dasharray',`${d2} ${C-d2}`); e2.setAttribute('stroke-dashoffset',`${-d1}`);
 }
 function setDonutThree(id1,id2,id3,p1,p2,p3,c1,c2,c3) {
-  const d1=C*p1/100, d2=C*p2/100, d3=C*p3/100;
+  const d1=C*p1/100,d2=C*p2/100,d3=C*p3/100;
   const e1=document.getElementById(id1),e2=document.getElementById(id2),e3=document.getElementById(id3);
   e1.setAttribute('stroke',c1); e1.setAttribute('stroke-dasharray',`${d1} ${C-d1}`); e1.setAttribute('stroke-dashoffset','0');
   e2.setAttribute('stroke',c2); e2.setAttribute('stroke-dasharray',`${d2} ${C-d2}`); e2.setAttribute('stroke-dashoffset',`${-d1}`);
   e3.setAttribute('stroke',c3); e3.setAttribute('stroke-dasharray',`${d3} ${C-d3}`); e3.setAttribute('stroke-dashoffset',`${-(d1+d2)}`);
 }
 
-// ── COSTS ──
+// ─── COSTOS ───────────────────────────────────────────────────────────────────
 let barbers = [
   { name:'Mario',   type:'%', val:30 },
   { name:'Lorenzo', type:'%', val:30 },
@@ -590,8 +636,8 @@ function renderCosts() {
   `).join('');
   document.getElementById('gastos-list').innerHTML = gastos.map((g,i) => `
     <div class="gasto-row">
-      <div class="gasto-left"><span class="gasto-name">${g.name}</span></div>
-      <div class="gasto-left" style="gap:12px">
+      <span class="gasto-name">${g.name}</span>
+      <div class="gasto-right">
         <span class="gasto-amount">${fmt(g.amt)}</span>
         <button class="gasto-remove" onclick="removeGasto(${i})">×</button>
       </div>
@@ -602,19 +648,19 @@ function renderCosts() {
 function setType(i,t) { barbers[i].type=t; renderCosts(); }
 function removeGasto(i) { gastos.splice(i,1); renderCosts(); renderAll(); }
 function addGasto() {
-  const n=document.getElementById('new-gasto-name').value.trim();
-  const a=parseFloat(document.getElementById('new-gasto-amt').value)||0;
+  const n = document.getElementById('new-gasto-name').value.trim();
+  const a = parseFloat(document.getElementById('new-gasto-amt').value)||0;
   if (!n) return;
-  gastos.push({name:n,amt:a});
-  document.getElementById('new-gasto-name').value='';
-  document.getElementById('new-gasto-amt').value='';
+  gastos.push({name:n, amt:a});
+  document.getElementById('new-gasto-name').value = '';
+  document.getElementById('new-gasto-amt').value  = '';
   renderCosts(); renderAll();
 }
 function updateResumen() {
   const d = periodData.mes;
-  const gastosTotal = gastos.reduce((s,g)=>s+g.amt,0);
-  const comMario   = barbers[0].type==='%' ? Math.round(d.mario.v*barbers[0].val/100) : barbers[0].val*d.mario.t;
-  const comLorenzo = barbers[1].type==='%' ? Math.round(d.lorenzo.v*barbers[1].val/100) : barbers[1].val*d.lorenzo.t;
+  const gastosTotal = gastos.reduce((s,g) => s+g.amt, 0);
+  const comMario   = barbers[0].type==='%' ? Math.round(d.mario.v   * barbers[0].val/100) : barbers[0].val * d.mario.t;
+  const comLorenzo = barbers[1].type==='%' ? Math.round(d.lorenzo.v * barbers[1].val/100) : barbers[1].val * d.lorenzo.t;
   const ganancia   = d.ingresos - gastosTotal - comMario - comLorenzo;
   document.getElementById('resumen-box').innerHTML = `
     <div class="resumen-row"><span class="resumen-label">Ingresos totales</span><span class="resumen-val">${fmt(d.ingresos)}</span></div>
