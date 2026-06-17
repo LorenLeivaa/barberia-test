@@ -16,56 +16,39 @@
       --text-2: #444444;
       --text-muted: #888888;
       --text-dim: #cccccc;
-      /* Violet accent — igual al de la página original de referencia */
       --accent: #6d28d9;
       --accent-bg: #f5f3ff;
       --accent-mid: #8b5cf6;
     }
     html { scroll-behavior: smooth; }
-
-    /* Footer siempre al final: body flex column, page flex-grow */
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg); color: var(--text);
       font-family: 'Inter', -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      min-height: 100vh; display: flex; flex-direction: column;
     }
 
-    /* ── NAV ── */
+    /* ── NAV ──
+       REEMPLAZAR LOGO: cambiar .nav-brand por <img src="logo.png" alt="Nombre" style="height:28px"> */
     nav {
-      height: 60px;
-      display: flex; align-items: center; justify-content: center;
-      background: #111111;
-      position: sticky; top: 0; z-index: 10;
-      flex-shrink: 0;
+      height: 60px; display: flex; align-items: center; justify-content: center;
+      background: #111111; position: sticky; top: 0; z-index: 10; flex-shrink: 0;
     }
-    .nav-brand {
-      font-size: 13px; font-weight: 800;
-      letter-spacing: 3px; text-transform: uppercase; color: #fff;
-    }
-    /* ── REEMPLAZAR LOGO: cambiar .nav-brand por una etiqueta <img> con el logo del cliente ── */
+    .nav-brand { font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
 
-    /* ── PAGE WRAPPER ── */
-    .page {
-      max-width: 540px; margin: 0 auto; width: 100%;
-      flex: 1; /* empuja el footer al fondo aunque no haya contenido */
-    }
+    .page { max-width: 540px; margin: 0 auto; width: 100%; flex: 1; }
 
     /* ── STEP HEADER ── */
     .step-header { padding: 28px 20px 14px; }
     .step-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: none; border: none; font-size: 14px; font-weight: 500;
-      color: var(--text-muted); font-family: inherit; cursor: pointer;
-      padding: 0; margin-bottom: 20px; transition: color 0.15s;
+      display: inline-flex; align-items: center; gap: 8px; background: none; border: none;
+      font-size: 14px; font-weight: 500; color: var(--text-muted); font-family: inherit;
+      cursor: pointer; padding: 0; margin-bottom: 20px; transition: color 0.15s;
     }
     .step-back:hover { color: var(--text); }
     .step-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; }
     .selected-chip {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center;
       background: var(--accent); color: #fff;
       border-radius: 100px; padding: 5px 14px;
       font-size: 13px; font-weight: 600;
@@ -86,8 +69,7 @@
     .service-item-name { font-size: 15px; font-weight: 700; }
     .service-item-badge {
       font-size: 9px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase;
-      padding: 2px 8px; border-radius: 100px; flex-shrink: 0;
-      background: var(--accent); color: #fff; /* violet para todos los badges */
+      padding: 2px 8px; border-radius: 100px; background: var(--accent); color: #fff;
     }
     .service-item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
     .service-item-right { text-align: right; flex-shrink: 0; }
@@ -103,17 +85,15 @@
       display: flex; align-items: center; gap: 14px;
     }
     .barber-avatar-wrap { position: relative; flex-shrink: 0; }
-    /* ── REEMPLAZAR FOTOS DE BARBEROS: cambiar el src de .barber-avatar-img por fotos reales de cada profesional ── */
+    /* REEMPLAZAR FOTOS: cambiar .photo en el array BARBERS por URLs de fotos reales */
     .barber-avatar-img {
       width: 72px; height: 72px; border-radius: 50%;
-      object-fit: cover; object-position: top;
-      display: block; background: var(--bg);
+      object-fit: cover; object-position: top; display: block; background: var(--bg);
     }
     .barber-star-badge {
       position: absolute; bottom: -3px; left: -3px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 100px; padding: 2px 7px;
-      font-size: 11px; font-weight: 700;
+      background: #fff; border: 1px solid var(--border); border-radius: 100px;
+      padding: 2px 7px; font-size: 11px; font-weight: 700;
       display: flex; align-items: center; gap: 2px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
@@ -123,32 +103,25 @@
     .barber-item-role { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
     .ver-perfil-btn {
       font-size: 12px; color: var(--text-2); font-weight: 600;
-      background: none; border: none; padding: 0; cursor: pointer;
-      font-family: inherit; text-decoration: underline;
-      text-underline-offset: 2px; transition: color 0.13s;
+      background: none; border: none; padding: 0; cursor: pointer; font-family: inherit;
+      text-decoration: underline; text-underline-offset: 2px; transition: color 0.13s;
     }
     .ver-perfil-btn:hover { color: var(--text); }
     .select-btn {
       background: #fff; color: #111; border: 1.5px solid #111;
       border-radius: 100px; padding: 9px 20px;
-      font-size: 13px; font-weight: 700;
-      cursor: pointer; font-family: inherit; flex-shrink: 0;
+      font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0;
       transition: all 0.14s;
     }
     .select-btn:hover { background: #111; color: #fff; }
 
     /* ── CÓMO FUNCIONA ── */
     .how-section {
-      background: #fff;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 60px 20px;
+      background: #fff; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); padding: 56px 20px;
     }
     .how-inner { max-width: 540px; margin: 0 auto; }
-    .how-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
-    }
+    .how-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .how-title { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 32px; }
     .how-steps { display: flex; flex-direction: column; gap: 20px; }
     .how-step { display: flex; align-items: flex-start; gap: 16px; }
@@ -159,29 +132,22 @@
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       border: 1px solid rgba(109,40,217,0.15);
     }
-    .how-step-body {}
     .how-step-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
     .how-step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
     /* ── BOTTOM SHEETS ──
-       Los sheets ocupan casi toda la pantalla, dejando solo el hueco del nav.
-       El contenido scrollea dentro, el botón queda fijo al fondo.
+       Casi full screen: deja 80px arriba (más que el nav de 60px).
+       Contenido scrolleable, botón pegado al fondo.
     ── */
     .sheet-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 500;
-      display: flex; align-items: flex-end; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.22s;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 500; display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.22s;
     }
     .sheet-overlay.open { opacity: 1; pointer-events: all; }
-
     .sheet {
-      background: #fff;
-      border-radius: 22px 22px 0 0;
+      background: #fff; border-radius: 22px 22px 0 0;
       width: 100%; max-width: 540px;
-      /* Casi full screen: deja 80px arriba (un poco más que el nav de 60px) */
       height: calc(100vh - 80px);
       display: flex; flex-direction: column;
       overflow: hidden;
@@ -189,33 +155,15 @@
       transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     }
     .sheet-overlay.open .sheet { transform: translateY(0); }
-
-    /* Zona scrolleable dentro del sheet */
-    .sheet-inner {
-      flex: 1; overflow-y: auto;
-      padding: 10px 22px 16px;
-      overscroll-behavior: contain;
-    }
-
-    /* Botón siempre al fondo */
-    .sheet-bottom {
-      padding: 14px 22px 40px;
-      background: #fff;
-      border-top: 1px solid var(--border);
-    }
-    .sheet-handle {
-      width: 38px; height: 4px; background: #ddd;
-      border-radius: 2px; margin: 10px auto 16px;
-    }
-    .sheet-close-row {
-      display: flex; justify-content: flex-end; margin-bottom: 4px;
-    }
+    .sheet-inner { flex: 1; overflow-y: auto; padding: 10px 22px 16px; overscroll-behavior: contain; }
+    .sheet-bottom { padding: 14px 22px 40px; background: #fff; border-top: 1px solid var(--border); }
+    .sheet-handle { width: 38px; height: 4px; background: #ddd; border-radius: 2px; margin: 10px auto 16px; }
+    .sheet-close-row { display: flex; justify-content: flex-end; margin-bottom: 4px; }
     .sheet-close {
       width: 30px; height: 30px; border-radius: 50%;
       background: #f5f4f2; border: none; cursor: pointer;
       font-size: 13px; color: var(--text-muted);
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.13s;
+      display: flex; align-items: center; justify-content: center; transition: background 0.13s;
     }
     .sheet-close:hover { background: #ebebeb; }
     .sheet-cta {
@@ -226,25 +174,19 @@
     }
     .sheet-cta:hover { background: #333; }
 
-    /* ── SERVICE DETAIL SHEET content ── */
+    /* ── SERVICE DETAIL SHEET ── */
     .ss-name { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 8px; }
     .ss-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .ss-price { font-size: 18px; font-weight: 800; }
     .ss-sep { color: var(--text-dim); }
     .ss-dur { font-size: 14px; color: var(--text-muted); }
     .ss-desc { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
-    .ss-includes-title {
-      font-size: 11px; font-weight: 700; color: var(--text-muted);
-      letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px;
-    }
-    .ss-includes { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .ss-includes li { display: flex; align-items: center; gap: 11px; font-size: 14px; }
-    .ss-includes li::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
-    }
+    .ss-includes-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
+    /* Formato orgánico con guiones, sin bullet points */
+    .ss-includes { display: flex; flex-direction: column; gap: 7px; margin-bottom: 28px; }
+    .ss-include-item { font-size: 14px; color: var(--text-2); line-height: 1.5; }
 
-    /* ── UPSELL SHEET content ── */
+    /* ── UPSELL SHEET ── */
     .us-title { font-size: 21px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 6px; }
     .us-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
     .upsell-opts { display: flex; flex-direction: column; gap: 8px; }
@@ -253,61 +195,43 @@
       padding: 13px 15px; cursor: pointer; transition: all 0.14s;
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
-    .upsell-opt:hover { border-color: var(--accent); }
-    /* Opción destacada en violet */
-    .upsell-opt.featured { border-color: var(--accent); background: var(--accent-bg); }
-    .upsell-opt.skip { border-style: dashed; opacity: 0.55; }
-    .upsell-opt.skip:hover { opacity: 1; }
+    .upsell-opt:hover { border-color: var(--accent-mid); }
+    .upsell-opt.selected { border-color: var(--accent); background: var(--accent-bg); }
+    .upsell-opt.featured { border-color: rgba(109,40,217,0.3); }
     .upsell-opt-left { flex: 1; min-width: 0; }
-    .upsell-opt-name {
-      font-size: 14px; font-weight: 700; margin-bottom: 2px;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .upsell-badge {
-      font-size: 9px; font-weight: 800; background: var(--accent); color: #fff;
-      padding: 2px 7px; border-radius: 100px; text-transform: uppercase; flex-shrink: 0;
-    }
+    .upsell-opt-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; display: flex; align-items: center; gap: 7px; }
+    .upsell-badge { font-size: 9px; font-weight: 800; background: var(--accent); color: #fff; padding: 2px 7px; border-radius: 100px; text-transform: uppercase; flex-shrink: 0; }
     .upsell-opt-detail { font-size: 12px; color: var(--text-muted); line-height: 1.35; }
-    .upsell-opt-price { font-size: 16px; font-weight: 800; flex-shrink: 0; white-space: nowrap; }
-    .upsell-opt.skip .upsell-opt-price { font-size: 13px; color: var(--text-muted); }
-
-    /* ── BARBER PROFILE SHEET content ── */
-    .bp-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
-    /* ── REEMPLAZAR FOTO DE PERFIL: cambiar src de #bp-photo por imagen real del profesional ── */
-    .bp-photo {
-      width: 80px; height: 80px; border-radius: 50%;
-      object-fit: cover; object-position: top; flex-shrink: 0;
+    .upsell-opt-delta { font-size: 15px; font-weight: 800; flex-shrink: 0; white-space: nowrap; color: var(--accent); }
+    .upsell-opt.selected .upsell-opt-delta { color: var(--accent); }
+    /* Cart al fondo del sheet de upsell */
+    .upsell-cart {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 14px; margin-bottom: 14px;
     }
+    .cart-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 2px; }
+    .cart-name { font-size: 15px; font-weight: 700; }
+    .cart-total { font-size: 22px; font-weight: 800; text-align: right; }
+
+    /* ── BARBER PROFILE SHEET ── */
+    .bp-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+    /* REEMPLAZAR FOTO: cambiar src de #bp-photo en JS por foto real del profesional */
+    .bp-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; }
     .bp-header-info { flex: 1; }
     .bp-name { font-size: 20px; font-weight: 800; margin-bottom: 2px; }
     .bp-role { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
     .bp-rating { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; }
     .bp-bio { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
-    .bp-tags-title {
-      font-size: 11px; font-weight: 700; color: var(--text-muted);
-      letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px;
-    }
+    .bp-tags-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
     .bp-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
-    .bp-tag {
-      background: var(--accent-bg); border: 1px solid rgba(109,40,217,0.15);
-      color: var(--accent); border-radius: 100px;
-      padding: 5px 12px; font-size: 12px; font-weight: 600;
-    }
+    .bp-tag { background: var(--accent-bg); border: 1px solid rgba(109,40,217,0.15); color: var(--accent); border-radius: 100px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #111; color: #fff;
-      padding: 44px 20px; text-align: center;
-      flex-shrink: 0; /* no se encoge */
-    }
-    .footer-brand {
-      font-size: 13px; font-weight: 800; letter-spacing: 3px;
-      text-transform: uppercase; margin-bottom: 10px;
-    }
+    footer { background: #111; color: #fff; padding: 44px 20px; text-align: center; flex-shrink: 0; }
+    .footer-brand { font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
     .footer-detail { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 20px; }
 
-    /* ── UTILS ── */
     .hidden { display: none !important; }
     .fade-in { animation: fadeUp 0.22s ease both; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
@@ -315,8 +239,7 @@
 </head>
 <body>
 
-<!-- ── NAV ──
-     REEMPLAZAR LOGO: cambiar el texto "BARBERIA PRUEBA" por <img src="logo-cliente.png" alt="Nombre"> con height ~28px -->
+<!-- NAV — REEMPLAZAR LOGO: cambiar span.nav-brand por <img src="logo-cliente.png" alt="Nombre" style="height:28px"> -->
 <nav>
   <span class="nav-brand">Barberia Prueba</span>
 </nav>
@@ -338,11 +261,11 @@
       <div class="step-title">Seleccionar profesional</div>
       <div class="selected-chip" id="selected-chip">—</div>
     </div>
-    <!-- ── REEMPLAZAR BARBEROS: agregar más .barber-item en #barber-list para nuevos profesionales ── -->
+    <!-- REEMPLAZAR BARBEROS: editar el array BARBERS en el JS con los datos reales -->
     <div class="barber-list" id="barber-list"></div>
   </div>
 
-  <!-- ══ CÓMO FUNCIONA ══ -->
+  <!-- ══ CÓMO FUNCIONA (se oculta en step 2) ══ -->
   <section class="how-section" id="step1-how">
     <div class="how-inner">
       <div class="how-eyebrow">Simple y rápido</div>
@@ -350,39 +273,28 @@
       <div class="how-steps">
         <div class="how-step">
           <div class="how-num">1</div>
-          <div class="how-step-body">
-            <div class="how-step-title">Elegís el servicio</div>
-            <div class="how-step-desc">Ves el precio y el tiempo estimado antes de confirmar. Sin sorpresas.</div>
-          </div>
+          <div><div class="how-step-title">Elegís el servicio</div><div class="how-step-desc">Ves el precio y el tiempo antes de confirmar. Sin sorpresas.</div></div>
         </div>
         <div class="how-step">
           <div class="how-num">2</div>
-          <div class="how-step-body">
-            <div class="how-step-title">Elegís el profesional y el horario</div>
-            <div class="how-step-desc">Seleccionás al barbero que preferís y el turno que más te convenga.</div>
-          </div>
+          <div><div class="how-step-title">Elegís el profesional y el horario</div><div class="how-step-desc">Seleccionás al barbero que preferís y el turno que más te convenga.</div></div>
         </div>
         <div class="how-step">
           <div class="how-num">3</div>
-          <div class="how-step-body">
-            <div class="how-step-title">Te llega la confirmación</div>
-            <div class="how-step-desc">Recibís un email al instante con todos los detalles y un recordatorio antes del turno.</div>
-          </div>
+          <div><div class="how-step-title">Te llega la confirmación</div><div class="how-step-desc">Recibís un email al instante con todos los detalles y un recordatorio antes del turno.</div></div>
         </div>
       </div>
     </div>
   </section>
 
-</div><!-- /page -->
+</div>
 
 <!-- ══ SHEET: Detalle del servicio ══ -->
 <div class="sheet-overlay" id="svc-overlay" onclick="closeSvcSheet(event)">
   <div class="sheet">
     <div class="sheet-inner">
       <div class="sheet-handle"></div>
-      <div class="sheet-close-row">
-        <button class="sheet-close" onclick="closeSvcSheet()">✕</button>
-      </div>
+      <div class="sheet-close-row"><button class="sheet-close" onclick="closeSvcSheet()">✕</button></div>
       <div class="ss-name" id="ss-name">—</div>
       <div class="ss-meta">
         <span class="ss-price" id="ss-price">—</span>
@@ -391,7 +303,7 @@
       </div>
       <div class="ss-desc" id="ss-desc">—</div>
       <div class="ss-includes-title">Incluye</div>
-      <ul class="ss-includes" id="ss-includes"></ul>
+      <div class="ss-includes" id="ss-includes"></div>
     </div>
     <div class="sheet-bottom">
       <button class="sheet-cta" onclick="continuar()">Continuar</button>
@@ -399,19 +311,27 @@
   </div>
 </div>
 
-<!-- ══ SHEET: Upsell ══ -->
+<!-- ══ SHEET: Upsell con carrito ══ -->
 <div class="sheet-overlay" id="ups-overlay" onclick="closeUpsSheet(event)">
   <div class="sheet">
     <div class="sheet-inner">
       <div class="sheet-handle"></div>
-      <div class="sheet-close-row">
-        <button class="sheet-close" onclick="closeUpsSheet()">✕</button>
-      </div>
+      <div class="sheet-close-row"><button class="sheet-close" onclick="closeUpsSheet()">✕</button></div>
       <div class="us-title" id="us-title">—</div>
       <div class="us-sub" id="us-sub">—</div>
       <div class="upsell-opts" id="us-opts"></div>
     </div>
-    <!-- El upsell no tiene botón fijo: se selecciona tocando una opción -->
+    <!-- Carrito fijo al fondo: muestra el servicio seleccionado y el total -->
+    <div class="sheet-bottom">
+      <div class="upsell-cart">
+        <div>
+          <div class="cart-label">Llevas</div>
+          <div class="cart-name" id="cart-name">—</div>
+        </div>
+        <div class="cart-total" id="cart-total">—</div>
+      </div>
+      <button class="sheet-cta" onclick="confirmUpsell()">Continuar</button>
+    </div>
   </div>
 </div>
 
@@ -420,9 +340,7 @@
   <div class="sheet">
     <div class="sheet-inner">
       <div class="sheet-handle"></div>
-      <div class="sheet-close-row">
-        <button class="sheet-close" onclick="closeBpSheet()">✕</button>
-      </div>
+      <div class="sheet-close-row"><button class="sheet-close" onclick="closeBpSheet()">✕</button></div>
       <div class="bp-header">
         <img class="bp-photo" id="bp-photo" src="" alt="">
         <div class="bp-header-info">
@@ -441,7 +359,6 @@
   </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-brand">Barberia Prueba</div>
   <div class="footer-detail">Juan Bautista Justo 2054 · Boedo, Buenos Aires</div>
@@ -450,98 +367,92 @@
 </footer>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// ─── DATA ─────────────────────────────────────────────────────────────────────
 const SERVICES = [
   {
-    id: 'corte',
-    name: 'Corte de pelo',
-    shortDesc: 'Corte clásico o moderno con lavado incluido',
-    desc: 'Nuestros barberos te asesorarán para encontrar el estilo que mejor combina con tu tipo de pelo y forma de cara.',
+    id: 'corte', name: 'Corte de pelo',
+    shortDesc: 'Clásico o moderno con lavado y secado',
+    desc: 'Corte profesional a tijera o máquina. Lavado incluido, secado y peinado final. Clásico o moderno según tu gusto.',
     includes: ['Lavado con shampoo profesional', 'Corte a tijera o máquina', 'Secado y peinado final'],
-    price: '$15.000', duration: '30 min',
+    price: '$15.000', priceN: 15000, duration: '30 min',
     slug: 'corte-de-pelo', upsellKey: 'corte'
   },
   {
-    id: 'asesoria',
-    name: 'Corte + Asesoría',
+    id: 'asesoria', name: 'Corte + Asesoría',
     shortDesc: 'Corte con análisis facial personalizado',
-    desc: 'Un análisis profesional de la forma de tu rostro para recomendarte el corte ideal antes de cortarte. Salís con el look que realmente te queda.',
-    includes: ['Análisis de forma de rostro', 'Recomendación personalizada de estilo', 'Corte ejecutado según el análisis', 'Lavado y secado'],
-    price: '$22.000', duration: '50 min',
+    desc: 'Antes de cortarte, el barbero analiza la forma de tu rostro y te recomienda el estilo que mejor te queda. Cada corte es único.',
+    includes: ['Análisis de forma de rostro', 'Recomendación de estilo personalizada', 'Corte ejecutado según el análisis', 'Lavado y secado'],
+    price: '$22.000', priceN: 22000, duration: '50 min',
     slug: 'corte-de-pelo', upsellKey: 'asesoria'
   },
   {
-    id: 'vip',
-    name: 'Corte VIP',
-    badge: 'PREMIUM',
-    shortDesc: 'Experiencia completa con masaje capilar y bebida',
-    desc: 'La experiencia de barbería definitiva. Asesoría personalizada, corte premium, masaje capilar relajante y una bebida de bienvenida.',
-    includes: ['Análisis de forma de rostro', 'Corte con técnica especializada', 'Masaje capilar relajante', 'Lavado con productos premium', 'Bebida de bienvenida'],
-    price: '$25.000', duration: '60 min',
+    id: 'vip', name: 'Corte VIP', badge: 'PREMIUM',
+    shortDesc: 'Asesoría, masaje capilar y bebida incluida',
+    desc: 'La experiencia de barbería completa. Asesoría personalizada, corte premium, masaje capilar relajante y una bebida de bienvenida.',
+    includes: ['Análisis y asesoría de estilo', 'Corte con técnica especializada', 'Masaje capilar relajante', 'Lavado con productos premium', 'Bebida de bienvenida'],
+    price: '$25.000', priceN: 25000, duration: '60 min',
     slug: 'corte-barba', upsellKey: null
   },
   {
-    id: 'combo',
-    name: 'Corte + Barba',
-    badge: 'MÁS PEDIDO',
+    id: 'combo', name: 'Corte + Barba', badge: 'MÁS PEDIDO',
     shortDesc: 'El combo completo en un solo turno',
-    desc: 'El servicio más elegido. Salís con corte y barba perfectos en un solo turno.',
+    desc: 'El servicio más elegido. Salís con corte y barba perfectos en un solo turno, sin pagar de más.',
     includes: ['Corte de pelo completo', 'Arreglo y perfilado de barba', 'Lavado y secado', 'Terminación con productos'],
-    price: '$20.000', duration: '45 min',
+    price: '$20.000', priceN: 20000, duration: '45 min',
     slug: 'corte-barba', upsellKey: 'combo'
   },
   {
-    id: 'barba',
-    name: 'Arreglo de barba',
-    shortDesc: 'Perfilado y arreglo con productos premium',
-    desc: 'Definición, simetría y terminación perfecta para cualquier estilo de barba, corta o larga.',
+    id: 'barba', name: 'Arreglo de barba',
+    shortDesc: 'Perfilado con productos premium',
+    desc: 'Definición, simetría y terminación perfecta para cualquier estilo, corta o larga.',
     includes: ['Perfilado y simetría', 'Arreglo a navaja o máquina', 'Terminación con aceites naturales'],
-    price: '$8.000', duration: '20 min',
+    price: '$8.000', priceN: 8000, duration: '20 min',
     slug: 'barba', upsellKey: 'barba'
   }
 ];
 
+// Upsells: muestran el EXTRA que se agrega y el delta de precio (no el precio completo)
 const UPSELLS = {
   corte: {
-    title: '¿Le sacás más provecho al turno?',
-    sub: 'Mientras estás acá podés sumar servicios.',
+    title: 'Mejorá tu turno',
+    sub: 'Seleccioná un extra (opcional) — podés continuar sin agregar nada.',
+    baseName: 'Corte de pelo', basePrice: 15000, baseSlug: 'corte-de-pelo',
     options: [
-      { name:'Corte VIP', badge:'PREMIUM', detail:'Corte + asesoría + masaje capilar + bebida de bienvenida', price:'$25.000', slug:'corte-barba', label:'Corte VIP' },
-      { name:'Corte + Asesoría', detail:'Análisis de forma de rostro + recomendación personalizada', price:'$22.000', slug:'corte-de-pelo', label:'Corte + Asesoría' },
-      { name:'Corte + Barba', detail:'Sumá el arreglo de barba completo y salí impecable', price:'$20.000', slug:'corte-barba', label:'Corte + Barba' },
-      { name:'Solo corte de pelo', detail:'Continuar sin agregar', price:'$15.000', slug:'corte-de-pelo', label:'Corte de pelo', skip:true }
+      { label:'Corte + Barba',   addName:'+ Barba',            detail:'Arreglo completo de barba en el mismo turno',         delta:'+$5.000', fullPrice:20000, slug:'corte-barba' },
+      { label:'Corte + Asesoría', addName:'+ Asesoría',         detail:'Análisis de rostro y recomendación personalizada',    delta:'+$7.000', fullPrice:22000, slug:'corte-de-pelo' },
+      { label:'Corte VIP',        addName:'+ Experiencia VIP',  badge:'PREMIUM', detail:'Masaje capilar + lavado premium + bebida de bienvenida', delta:'+$10.000', fullPrice:25000, slug:'corte-barba' },
     ]
   },
   asesoria: {
     title: 'Completá la experiencia',
-    sub: 'Ya incluye asesoría, podés sumar algo más.',
+    sub: 'Ya incluye asesoría. Podés sumar algo más (opcional).',
+    baseName: 'Corte + Asesoría', basePrice: 22000, baseSlug: 'corte-de-pelo',
     options: [
-      { name:'Corte VIP', badge:'PREMIUM', detail:'Todo lo anterior + masaje capilar + lavado premium + bebida', price:'$25.000', slug:'corte-barba', label:'Corte VIP' },
-      { name:'Corte + Asesoría + Barba', detail:'Sumá el arreglo de barba al servicio', price:'$28.000', slug:'corte-barba', label:'Corte + Asesoría + Barba' },
-      { name:'Solo corte + asesoría', detail:'Continuar sin agregar', price:'$22.000', slug:'corte-de-pelo', label:'Corte + Asesoría', skip:true }
+      { label:'Corte + Asesoría + Barba', addName:'+ Barba',       detail:'Arreglo de barba completo en el mismo turno',      delta:'+$6.000', fullPrice:28000, slug:'corte-barba' },
+      { label:'Corte VIP',                addName:'+ Upgrade VIP', badge:'PREMIUM', detail:'Masaje capilar + lavado premium + bebida', delta:'+$3.000', fullPrice:25000, slug:'corte-barba' },
     ]
   },
   combo: {
     title: 'Llevalo al siguiente nivel',
-    sub: 'Ya elegiste lo mejor, con un poco más tenés la experiencia completa.',
+    sub: 'Ya llevás el combo, podés sumar algo más (opcional).',
+    baseName: 'Corte + Barba', basePrice: 20000, baseSlug: 'corte-barba',
     options: [
-      { name:'Combo VIP', badge:'PREMIUM', detail:'Corte + barba + masaje capilar + bebida incluida', price:'$28.000', slug:'corte-barba', label:'Combo VIP' },
-      { name:'Corte + Barba + Asesoría', detail:'Con análisis de forma de rostro personalizado', price:'$26.000', slug:'corte-barba', label:'Corte + Barba + Asesoría' },
-      { name:'Corte + Barba estándar', detail:'Continuar con el combo elegido', price:'$20.000', slug:'corte-barba', label:'Corte + Barba', skip:true }
+      { label:'Corte + Barba + Asesoría', addName:'+ Asesoría',    detail:'Análisis de rostro + recomendación personalizada', delta:'+$6.000', fullPrice:26000, slug:'corte-barba' },
+      { label:'Combo VIP',                addName:'+ Upgrade VIP', badge:'PREMIUM', detail:'Masaje capilar + lavado premium + bebida', delta:'+$8.000', fullPrice:28000, slug:'corte-barba' },
     ]
   },
   barba: {
-    title: 'Aprovechá el turno al máximo',
-    sub: 'Estando en la silla podés sumar más por poco más.',
+    title: 'Aprovechá el turno',
+    sub: 'Estando en la silla podés sumar algo más (opcional).',
+    baseName: 'Arreglo de barba', basePrice: 8000, baseSlug: 'barba',
     options: [
-      { name:'Combo VIP', badge:'PREMIUM', detail:'Corte + barba + masaje capilar + bebida de bienvenida', price:'$28.000', slug:'corte-barba', label:'Combo VIP' },
-      { name:'Corte + Barba', detail:'Sumate el corte también y salí con todo listo', price:'$20.000', slug:'corte-barba', label:'Corte + Barba' },
-      { name:'Solo arreglo de barba', detail:'Continuar sin agregar', price:'$8.000', slug:'barba', label:'Arreglo de barba', skip:true }
+      { label:'Corte + Barba', addName:'+ Corte de pelo',  detail:'Hacete el corte en el mismo turno',                       delta:'+$12.000', fullPrice:20000, slug:'corte-barba' },
+      { label:'Combo VIP',     addName:'+ Combo VIP', badge:'PREMIUM', detail:'Corte + masaje capilar + lavado premium + bebida', delta:'+$20.000', fullPrice:28000, slug:'corte-barba' },
     ]
   }
 };
 
-// ── REEMPLAZAR BARBEROS: editar este array con nombre, rol, años, rating, reseñas, bio, especialidades y foto real ──
+// REEMPLAZAR BARBEROS: editar este array con nombre real, cargo, experiencia, rating, reseñas, bio, especialidades y foto
 const BARBERS = [
   {
     id: 'mario', handle: 'mario-barbero',
@@ -549,8 +460,7 @@ const BARBERS = [
     rating: '4,9', reviews: 142,
     bio: 'Especialista en fade, degradé y cortes clásicos. Formado en Buenos Aires con más de 8 años en el oficio.',
     specialties: ['Fade', 'Degradé', 'Cortes clásicos', 'Barba a navaja'],
-    // REEMPLAZAR: cambiar esta URL por la foto real de Mario
-    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face&q=80'
+    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face&q=80' // REEMPLAZAR
   },
   {
     id: 'lorenzo', handle: 'lorenzo-barbero',
@@ -558,15 +468,16 @@ const BARBERS = [
     rating: '5,0', reviews: 98,
     bio: 'Experto en estilos modernos, texturizados y diseños creativos. Siempre al tanto de las últimas tendencias.',
     specialties: ['Estilos modernos', 'Texturizados', 'Diseños', 'Asesoramiento'],
-    // REEMPLAZAR: cambiar esta URL por la foto real de Lorenzo
-    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face&q=80'
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face&q=80' // REEMPLAZAR
   }
 ];
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
+// ─── STATE ────────────────────────────────────────────────────────────────────
 let currentSlug = null;
 let currentLabel = null;
 let pendingServiceId = null;
+let currentUpsellKey = null;
+let selectedUpsellIdx = null; // índice de la opción seleccionada, null = ninguna
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 renderServices();
@@ -609,7 +520,9 @@ function renderBarbers() {
   `).join('');
 }
 
-// ─── SERVICE SHEET ────────────────────────────────────────────────────────────
+function fmtPrice(n) { return '$' + n.toLocaleString('es-AR'); }
+
+// ─── SERVICE SHEET ─────────────────────────────────────────────────────────────
 function openSvcSheet(id) {
   pendingServiceId = id;
   const s = SERVICES.find(x => x.id === id);
@@ -617,69 +530,100 @@ function openSvcSheet(id) {
   document.getElementById('ss-price').textContent = s.price;
   document.getElementById('ss-dur').textContent   = s.duration;
   document.getElementById('ss-desc').textContent  = s.desc;
-  document.getElementById('ss-includes').innerHTML = s.includes.map(i => `<li>${i}</li>`).join('');
+  // Formato orgánico con guiones
+  document.getElementById('ss-includes').innerHTML =
+    s.includes.map(i => `<div class="ss-include-item">— ${i}</div>`).join('');
   document.getElementById('svc-overlay').classList.add('open');
 }
 function closeSvcSheet(e) {
   if (!e || e.target === document.getElementById('svc-overlay'))
     document.getElementById('svc-overlay').classList.remove('open');
 }
-
 function continuar() {
   closeSvcSheet();
   const s = SERVICES.find(x => x.id === pendingServiceId);
   if (s.upsellKey && UPSELLS[s.upsellKey]) {
     setTimeout(() => openUpsSheet(s.upsellKey), 120);
   } else {
-    // VIP: no tiene upsell, va directo a barberos
-    currentSlug  = s.slug;
-    currentLabel = s.name;
-    showStep2();
+    currentSlug = s.slug; currentLabel = s.name; showStep2();
   }
 }
 
-// ─── UPSELL SHEET ─────────────────────────────────────────────────────────────
+// ─── UPSELL SHEET ──────────────────────────────────────────────────────────────
 function openUpsSheet(key) {
+  currentUpsellKey = key;
+  selectedUpsellIdx = null;
   const u = UPSELLS[key];
   document.getElementById('us-title').textContent = u.title;
   document.getElementById('us-sub').textContent   = u.sub;
-  document.getElementById('us-opts').innerHTML = u.options.map(o => `
-    <div class="upsell-opt ${o.skip ? 'skip' : (o.badge ? 'featured' : '')}"
-         onclick="chooseUpsell('${o.slug}','${o.label.replace(/'/g,"\\'")}')">
+  document.getElementById('us-opts').innerHTML = u.options.map((o, idx) => `
+    <div class="upsell-opt ${o.badge ? 'featured' : ''}" onclick="toggleUpsellOpt(${idx})">
       <div class="upsell-opt-left">
         <div class="upsell-opt-name">
-          ${o.name}${o.badge ? `<span class="upsell-badge">${o.badge}</span>` : ''}
+          ${o.addName}${o.badge ? `<span class="upsell-badge">${o.badge}</span>` : ''}
         </div>
         <div class="upsell-opt-detail">${o.detail}</div>
       </div>
-      <div class="upsell-opt-price">${o.price}</div>
+      <div class="upsell-opt-delta">${o.delta}</div>
     </div>
   `).join('');
+  // Inicializar carrito con servicio base
+  updateCart(null);
   document.getElementById('ups-overlay').classList.add('open');
+}
+function toggleUpsellOpt(idx) {
+  const u = UPSELLS[currentUpsellKey];
+  const opts = document.querySelectorAll('.upsell-opt');
+  if (selectedUpsellIdx === idx) {
+    // Deseleccionar → volver al base
+    selectedUpsellIdx = null;
+    opts.forEach(el => el.classList.remove('selected'));
+    updateCart(null);
+  } else {
+    selectedUpsellIdx = idx;
+    opts.forEach(el => el.classList.remove('selected'));
+    opts[idx].classList.add('selected');
+    updateCart(u.options[idx]);
+  }
+}
+function updateCart(opt) {
+  const u = UPSELLS[currentUpsellKey];
+  if (opt) {
+    document.getElementById('cart-name').textContent  = opt.label;
+    document.getElementById('cart-total').textContent = fmtPrice(opt.fullPrice);
+  } else {
+    document.getElementById('cart-name').textContent  = u.baseName;
+    document.getElementById('cart-total').textContent = fmtPrice(u.basePrice);
+  }
 }
 function closeUpsSheet(e) {
   if (!e || e.target === document.getElementById('ups-overlay'))
     document.getElementById('ups-overlay').classList.remove('open');
 }
-function chooseUpsell(slug, label) {
-  currentSlug  = slug;
-  currentLabel = label;
+function confirmUpsell() {
+  const u = UPSELLS[currentUpsellKey];
+  if (selectedUpsellIdx !== null) {
+    const opt = u.options[selectedUpsellIdx];
+    currentSlug = opt.slug; currentLabel = opt.label;
+  } else {
+    currentSlug = u.baseSlug; currentLabel = u.baseName;
+  }
   closeUpsSheet();
   showStep2();
 }
 
-// ─── BARBER PROFILE SHEET ─────────────────────────────────────────────────────
+// ─── BARBER PROFILE SHEET ──────────────────────────────────────────────────────
 function openBpSheet(id, event) {
   if (event) event.stopPropagation();
   const b = BARBERS.find(x => x.id === id);
-  document.getElementById('bp-photo').src        = b.photo;
-  document.getElementById('bp-photo').alt        = b.name;
-  document.getElementById('bp-name').textContent = b.name;
-  document.getElementById('bp-role').textContent = `${b.role} · ${b.exp}`;
-  document.getElementById('bp-rating').textContent = `${b.rating} (${b.reviews} reseñas)`;
-  document.getElementById('bp-bio').textContent  = b.bio;
-  document.getElementById('bp-tags').innerHTML   = b.specialties.map(s => `<span class="bp-tag">${s}</span>`).join('');
-  document.getElementById('bp-cta').onclick      = () => { closeBpSheet(); book(b.handle); };
+  document.getElementById('bp-photo').src = b.photo;
+  document.getElementById('bp-photo').alt = b.name;
+  document.getElementById('bp-name').textContent    = b.name;
+  document.getElementById('bp-role').textContent    = `${b.role} · ${b.exp}`;
+  document.getElementById('bp-rating').textContent  = `${b.rating} (${b.reviews} reseñas)`;
+  document.getElementById('bp-bio').textContent     = b.bio;
+  document.getElementById('bp-tags').innerHTML      = b.specialties.map(s => `<span class="bp-tag">${s}</span>`).join('');
+  document.getElementById('bp-cta').onclick         = () => { closeBpSheet(); book(b.handle); };
   document.getElementById('bp-overlay').classList.add('open');
 }
 function closeBpSheet(e) {
@@ -687,21 +631,19 @@ function closeBpSheet(e) {
     document.getElementById('bp-overlay').classList.remove('open');
 }
 
-// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+// ─── NAVEGACIÓN ────────────────────────────────────────────────────────────────
 function showStep2() {
   document.getElementById('step1').classList.add('hidden');
   document.getElementById('step1-how').classList.add('hidden');
   const s2 = document.getElementById('step2');
-  s2.classList.remove('hidden');
-  s2.classList.add('fade-in');
+  s2.classList.remove('hidden'); s2.classList.add('fade-in');
   document.getElementById('selected-chip').textContent = currentLabel;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function goBack() {
   document.getElementById('step2').classList.add('hidden');
   const s1 = document.getElementById('step1');
-  s1.classList.remove('hidden');
-  s1.classList.add('fade-in');
+  s1.classList.remove('hidden'); s1.classList.add('fade-in');
   document.getElementById('step1-how').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
